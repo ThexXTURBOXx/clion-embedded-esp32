@@ -197,6 +197,7 @@ public class OpenOcdComponent {
         };
         public abstract Flashed_STATUS nextState();
     }
+
     private class ErrorFilter implements Filter {
         private final Project project;
 
