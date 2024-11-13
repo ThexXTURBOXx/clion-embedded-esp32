@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.4.1]
+
+### Fixed
+
+- Fix error messages being shown in wrong thread ([#25](https://github.com/ThexXTURBOXx/clion-embedded-esp32/issues/25))
+
 ## [0.4.0]
 
 ### Added
