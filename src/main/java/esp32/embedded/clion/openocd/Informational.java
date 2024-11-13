@@ -29,8 +29,7 @@ public class Informational {
     }
 
     public static void showMessage(Project project, MessageType messageType, String message) {
-        ApplicationManager.getApplication().invokeLater(() ->
-                {
+        ApplicationManager.getApplication().invokeLater(() -> {
                     ToolWindowManager toolWindowManager = ToolWindowManager.getInstance(project);
                     if (toolWindowManager.canShowNotification(ToolWindowId.RUN)) {
                         toolWindowManager.notifyByBalloon(ToolWindowId.RUN, messageType, message,
@@ -52,15 +51,18 @@ public class Informational {
     }
 
     public static void showPluginError(Project project, ConfigurationException e) {
-        int optionNo = Messages.showDialog(project, e.getLocalizedMessage(), e.getTitle(),
-                new String[]{Messages.getOkButton(), CommonBundle.settingsAction(), CommonBundle.getHelpButtonText()},
-                0, Messages.getErrorIcon());
-        switch (optionNo) {
-        case 1 -> ShowSettingsUtil.getInstance().showSettingsDialog(project, OpenOcdSettings.class);
-        case 2 -> BrowserUtil.browse(HELP_URL);
-        default -> {//nothing to do
-        }
-        }
+        ApplicationManager.getApplication().invokeLater(() -> {
+            int optionNo = Messages.showDialog(project, e.getLocalizedMessage(), e.getTitle(),
+                    new String[]{Messages.getOkButton(), CommonBundle.settingsAction(),
+                            CommonBundle.getHelpButtonText()},
+                    0, Messages.getErrorIcon());
+            switch (optionNo) {
+            case 1 -> ShowSettingsUtil.getInstance().showSettingsDialog(project, OpenOcdSettings.class);
+            case 2 -> BrowserUtil.browse(HELP_URL);
+            default -> {//nothing to do
+            }
+            }
+        });
     }
 
     private static class HyperlinkHandler extends HyperlinkAdapter {
