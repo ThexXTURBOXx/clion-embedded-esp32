@@ -3,6 +3,6 @@
 .intellijPlatform/
 .qodana
 build
-release\.properties
+release.properties
 .DS_Store
 gradle/.DS_Store
