@@ -5,9 +5,9 @@ import com.intellij.execution.configurations.CommandLineState;
 import com.intellij.execution.configurations.GeneralCommandLine;
 import com.intellij.execution.filters.Filter;
 import com.intellij.execution.process.OSProcessHandler;
-import com.intellij.execution.process.ProcessAdapter;
 import com.intellij.execution.process.ProcessEvent;
 import com.intellij.execution.process.ProcessHandler;
+import com.intellij.execution.process.ProcessListener;
 import com.intellij.execution.ui.ExecutionConsole;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -38,7 +38,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicReference;
-
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -63,10 +62,9 @@ class OpenOcdLauncher extends CidrLauncher {
                     .createOcdCommandLine(openOcdConfiguration,
                             runFile, "reset", true);
             OSProcessHandler osProcessHandler = new OSProcessHandler(commandLine);
-            osProcessHandler.addProcessListener(new ProcessAdapter() {
+            osProcessHandler.addProcessListener(new ProcessListener() {
                 @Override
                 public void processTerminated(@NotNull ProcessEvent event) {
-                    super.processTerminated(event);
                     Project project = commandLineState.getEnvironment().getProject();
                     if (event.getExitCode() == 0) {
                         Informational.showSuccessfulDownloadNotification(project);
@@ -109,20 +107,19 @@ class OpenOcdLauncher extends CidrLauncher {
         ApplicationManager.getApplication().invokeAndWait(() -> {
             try {
                 debugProcessRef.set(new CidrRemoteGDBDebugProcess(gdbDriverConfiguration,
-                                remoteDebugParameters,
-                                xDebugSession,
-                                commandLineState.getConsoleBuilder(),
-                                project1 -> new Filter[0]));
+                        remoteDebugParameters,
+                        xDebugSession,
+                        commandLineState.getConsoleBuilder(),
+                        project1 -> new Filter[0]));
             } catch (ExecutionException e) {
                 throw new RuntimeException(e);
             }
         });
         CidrRemoteGDBDebugProcess debugProcess = debugProcessRef.get();
 
-        debugProcess.getProcessHandler().addProcessListener(new ProcessAdapter() {
+        debugProcess.getProcessHandler().addProcessListener(new ProcessListener() {
             @Override
             public void processWillTerminate(@NotNull ProcessEvent event, boolean willBeDestroyed) {
-                super.processWillTerminate(event, willBeDestroyed);
                 findOpenOcdAction(project).stopOpenOcd();
             }
         });

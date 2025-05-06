@@ -135,7 +135,7 @@ public abstract class FileChooseInput extends TextFieldWithBrowseButton {
 
         @Override
         protected FileChooserDescriptor createFileChooserDescriptor() {
-            return FileChooserDescriptorFactory.createSingleLocalFileDescriptor();
+            return FileChooserDescriptorFactory.singleFile();
         }
 
         @Override
@@ -211,7 +211,7 @@ public abstract class FileChooseInput extends TextFieldWithBrowseButton {
 
         @Override
         protected FileChooserDescriptor createFileChooserDescriptor() {
-            return FileChooserDescriptorFactory.createSingleLocalFileDescriptor();
+            return FileChooserDescriptorFactory.singleFile();
         }
 
         @Override
@@ -301,7 +301,7 @@ public abstract class FileChooseInput extends TextFieldWithBrowseButton {
             if (SystemInfo.isWindows) {
                 return FileChooserDescriptorFactory.createSingleFileDescriptor("bin");
             } else {
-                return FileChooserDescriptorFactory.createSingleLocalFileDescriptor();
+                return FileChooserDescriptorFactory.singleFile();
             }
         }
 
@@ -336,7 +336,7 @@ public abstract class FileChooseInput extends TextFieldWithBrowseButton {
             if (SystemInfo.isWindows) {
                 return FileChooserDescriptorFactory.createSingleFileDescriptor("exe");
             } else {
-                return FileChooserDescriptorFactory.createSingleLocalFileDescriptor();
+                return FileChooserDescriptorFactory.singleFile();
             }
         }
     }

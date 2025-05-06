@@ -35,7 +35,11 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"), useInstaller = false)
+        create(
+            providers.gradleProperty("platformType"),
+            providers.gradleProperty("platformVersion"),
+            useInstaller = false
+        )
 
         // Plugin Dependencies. Uses `platformBundledPlugins` property from the gradle.properties file for bundled IntelliJ Platform plugins.
         bundledPlugins(providers.gradleProperty("platformBundledPlugins").map { it.split(',') })
@@ -45,7 +49,6 @@ dependencies {
 
         jetbrainsRuntime()
 
-        instrumentationTools()
         pluginVerifier()
         zipSigner()
     }
