@@ -37,9 +37,10 @@ dependencies {
     intellijPlatform {
         create(
             providers.gradleProperty("platformType"),
-            providers.gradleProperty("platformVersion"),
+            providers.gradleProperty("platformVersion")
+        ) {
             useInstaller = false
-        )
+        }
 
         // Plugin Dependencies. Uses `platformBundledPlugins` property from the gradle.properties file for bundled IntelliJ Platform plugins.
         bundledPlugins(providers.gradleProperty("platformBundledPlugins").map { it.split(',') })
@@ -123,6 +124,10 @@ changelog {
 tasks {
     wrapper {
         gradleVersion = providers.gradleProperty("gradleVersion").get()
+    }
+
+    compileJava {
+        options.compilerArgs.addAll(arrayOf("-Xlint:deprecation", "-Xlint:unchecked"))
     }
 
     publishPlugin {
