@@ -53,6 +53,7 @@ public class OpenOcdConfigurationType extends CMakeRunConfigurationType {
         };
     }
 
+    @NotNull
     @Override
     public OpenOcdConfigurationEditor createEditor(@NotNull Project project) {
         return new OpenOcdConfigurationEditor(project, getHelper(project));

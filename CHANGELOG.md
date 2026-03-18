@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.4.5] - 2026-03-18
+
+### Fixed
+
+- Updated to 2026.1 EAP
+
 ## [0.4.4] - 2025-09-16
 
 ### Fixed
@@ -193,7 +199,8 @@
 
 - STM32G0 and STM32L5 experimental support added
 
-[Unreleased]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.4...HEAD
+[Unreleased]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.5...HEAD
+[0.4.5]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.4...v0.4.5
 [0.4.4]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.3...v0.4.4
 [0.4.3]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.1...v0.4.2

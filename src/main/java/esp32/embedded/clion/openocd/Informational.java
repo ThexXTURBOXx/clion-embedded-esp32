@@ -66,10 +66,10 @@ public class Informational {
     }
 
     private static class HyperlinkHandler extends HyperlinkAdapter {
-        private final Project project;
+        //private final Project project;
 
         public HyperlinkHandler(Project project) {
-            this.project = project;
+            //this.project = project;
         }
 
         @Override
