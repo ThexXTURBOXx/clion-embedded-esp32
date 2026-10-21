@@ -6,7 +6,7 @@
 
 ### Fixed
 
-- Update compatibility for 2026.3+ product lines
+- Update compatibility for 2026.2+ product lines
 - Fix compatibility with JDK 21 (that is, older product lines)
 
 ## [0.4.6] - 2026-07-17
