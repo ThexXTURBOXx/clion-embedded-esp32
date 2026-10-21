@@ -7,8 +7,8 @@ import com.intellij.openapi.components.State;
 import com.intellij.openapi.util.SystemInfo;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.util.system.OS;
 import java.io.File;
-import org.jdesktop.swingx.util.OS;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -73,7 +73,7 @@ public final class OpenOcdSettingsState implements PersistentStateComponent<Open
 
     @NotNull
     private String defOpenOcdLocation() {
-        if (!OS.isWindows()) return "/usr";
+        if (OS.CURRENT != OS.Windows) return "/usr";
         VirtualFile defDir = VfsUtil.getUserHomeDir();
         if (defDir != null) {
             return defDir.getPath();

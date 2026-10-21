@@ -24,11 +24,11 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.util.system.OS;
 import java.io.File;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
-import org.jdesktop.swingx.util.OS;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -53,7 +53,7 @@ public final class OpenOcdComponent {
     private static final String ADAPTER_SPEED = "adapter speed";
 
     static {
-        BIN_OPENOCD = "bin/openocd" + (OS.isWindows() ? ".exe" : "");
+        BIN_OPENOCD = "bin/openocd" + (OS.CURRENT == OS.Windows ? ".exe" : "");
     }
 
     private final EditorColorsScheme myColorsScheme;

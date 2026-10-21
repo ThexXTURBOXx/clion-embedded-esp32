@@ -13,6 +13,7 @@ import com.intellij.util.ui.GridBag;
 import com.jetbrains.cidr.cpp.execution.CMakeAppRunConfiguration;
 import com.jetbrains.cidr.cpp.execution.CMakeAppRunConfigurationSettingsEditor;
 import com.jetbrains.cidr.cpp.execution.CMakeBuildConfigurationHelper;
+import com.jetbrains.cidr.cpp.execution.gdbserver.RadioButtonPanel;
 import com.jetbrains.cidr.cpp.execution.remote.DebuggerData;
 import com.jetbrains.cidr.cpp.execution.remote.DebuggersComboBoxWithModel;
 import esp32.embedded.clion.openocd.OpenOcdConfiguration.DownloadType;
@@ -26,7 +27,6 @@ import javax.swing.Box;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import org.jdesktop.swingx.JXRadioGroup;
 import org.jetbrains.annotations.NotNull;
 
 public class OpenOcdConfigurationEditor extends CMakeAppRunConfigurationSettingsEditor {
@@ -36,7 +36,7 @@ public class OpenOcdConfigurationEditor extends CMakeAppRunConfigurationSettings
     private IntegerField gdbPort;
     private IntegerField telnetPort;
     private ExtendableTextField offset;
-    private JXRadioGroup<OpenOcdConfiguration.ResetType> resetGroup;
+    private RadioButtonPanel<OpenOcdConfiguration.ResetType> resetGroup;
     private JCheckBox flushRegsCheck;
     private JCheckBox initialBreakpointCheck;
     private ExtendableTextField initialBreakpointName;
@@ -48,9 +48,9 @@ public class OpenOcdConfigurationEditor extends CMakeAppRunConfigurationSettings
     private FileChooseInput.BinFile partitionTableFile;
     private ExtendableTextField partitionTableOffset;
     private String openocdHome;
-    private JXRadioGroup<DownloadType> downloadGroup;
+    private RadioButtonPanel<DownloadType> downloadGroup;
 
-    private JXRadioGroup<ProgramType> programType;
+    private RadioButtonPanel<ProgramType> programType;
     private JCheckBox appendVerify;
 
     private ExtendableTextField additionalProgramParameters;
@@ -198,7 +198,7 @@ public class OpenOcdConfigurationEditor extends CMakeAppRunConfigurationSettings
         panel.add(partitionPanel, gridBag.nextLine().next().coverLine());
 
         panel.add(new JLabel("OpenOCD command:"), gridBag.nextLine().next());
-        programType = new JXRadioGroup<>(ProgramType.values());
+        programType = new RadioButtonPanel<>(ProgramType.values());
         panel.add(programType, gridBag.next().coverLine());
 
         appendVerify = new JCheckBox("Append verify parameter", OpenOcdConfiguration.DEF_APPEND_VERIFY);
@@ -235,12 +235,12 @@ public class OpenOcdConfigurationEditor extends CMakeAppRunConfigurationSettings
         downloadPanel.add(offset);
 
         downloadPanel.add(new JLabel("Perform:"));
-        downloadGroup = new JXRadioGroup<>(DownloadType.values());
+        downloadGroup = new RadioButtonPanel<>(DownloadType.values());
         downloadPanel.add(downloadGroup);
 
         downloadPanel.add(new JLabel("Reset:"));
-        resetGroup = new JXRadioGroup<>(OpenOcdConfiguration.ResetType.values());
-        resetGroup.addActionListener(_ -> {
+        resetGroup = new RadioButtonPanel<>(OpenOcdConfiguration.ResetType.values());
+        resetGroup.addChangeListener(_ -> {
             if (resetGroup.getSelectedValue().supportsBreakpoints()) {
                 initialBreakpointCheck.setVisible(true);
                 if (initialBreakpointCheck.isSelected()) initialBreakpointName.setVisible(true);
