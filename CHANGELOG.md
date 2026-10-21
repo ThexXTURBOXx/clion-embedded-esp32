@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.4.8] - 2026-10-21
+
+### Fixed
+
+- Update compatibility for 2026.3+ product lines
+- Update to Java 25 (drops support for older versions)
+
 ## [0.4.7] - 2026-10-21
 
 ### Fixed
@@ -212,7 +219,8 @@
 
 - STM32G0 and STM32L5 experimental support added
 
-[Unreleased]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.7...HEAD
+[Unreleased]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.8...HEAD
+[0.4.8]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.7...v0.4.8
 [0.4.7]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.6...v0.4.7
 [0.4.6]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.5...v0.4.6
 [0.4.5]: https://github.com/ThexXTURBOXx/clion-embedded-esp32/compare/v0.4.4...v0.4.5
