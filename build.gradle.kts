@@ -15,7 +15,7 @@ version = providers.gradleProperty("pluginVersion").get()
 // Set the JVM language level used to build the project.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(25)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
