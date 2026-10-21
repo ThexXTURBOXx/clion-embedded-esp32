@@ -240,7 +240,7 @@ public class OpenOcdConfigurationEditor extends CMakeAppRunConfigurationSettings
 
         downloadPanel.add(new JLabel("Reset:"));
         resetGroup = new JXRadioGroup<>(OpenOcdConfiguration.ResetType.values());
-        resetGroup.addActionListener(e -> {
+        resetGroup.addActionListener(_ -> {
             if (resetGroup.getSelectedValue().supportsBreakpoints()) {
                 initialBreakpointCheck.setVisible(true);
                 if (initialBreakpointCheck.isSelected()) initialBreakpointName.setVisible(true);

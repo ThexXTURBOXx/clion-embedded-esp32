@@ -110,7 +110,7 @@ class OpenOcdLauncher extends CidrLauncher {
                         remoteDebugParameters,
                         xDebugSession,
                         commandLineState.getConsoleBuilder(),
-                        project1 -> new Filter[0]));
+                        _ -> new Filter[0]));
             } catch (ExecutionException e) {
                 throw new RuntimeException(e);
             }

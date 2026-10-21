@@ -33,7 +33,7 @@ public abstract class FileChooseInput extends TextFieldWithBrowseButton {
         editor = new FileTextFieldValueEditor(valueName, defValue);
         fileDescriptor = createFileChooserDescriptor().withFileFilter(this::validateFile);
         installPathCompletion(fileDescriptor);
-        addActionListener(e -> {
+        addActionListener(_ -> {
             VirtualFile virtualFile = null;
             String text = getTextField().getText();
             if (text != null && !text.isEmpty())
