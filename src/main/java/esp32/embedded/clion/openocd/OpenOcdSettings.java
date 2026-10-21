@@ -1,8 +1,10 @@
 package esp32.embedded.clion.openocd;
 
+import com.intellij.ide.HelpTooltipKt;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.text.HtmlChunk;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.ui.components.JBCheckBox;
 import com.intellij.uiDesigner.core.GridConstraints;
@@ -133,7 +135,7 @@ public class OpenOcdSettings implements Configurable {
                 toolchainRadioButton.setToolTipText(null);
             } else {
                 toolchainRadioButton.setText(String.format("From Toolchain (%s)", debugger.getName()));
-                toolchainRadioButton.setToolTipText(debugger.getAbsolutePath());
+                HelpTooltipKt.setToolTipText(toolchainRadioButton, HtmlChunk.text(debugger.getAbsolutePath()));
             }
         }
 
